@@ -1,0 +1,27 @@
+{% from AlarmConstants import * %}
+{% set isPandora = (config.getDailySetting(day, DailySetting.ALARM_TYPE) == "pandora") if day else (config.getGlobalSetting(DailySetting.ALARM_TYPE) == "pandora") %}
+<div class="input-group">
+	<span class="input-group-addon" id="type-input-addon-{{ day if day else "global" }}">Type</span>
+	<select id="input-{{DailySetting.ALARM_TYPE}}-{{ day if day else "global" }}" class="setting form-control" aria-describedby="type-input-addon-{{ day if day else "global"  }}">
+		<option value="sound" {{ "" if isPandora else "selected" }}>Sound</option>
+		<option value="pandora" {{ "selected" if isPandora else "" }}>Pandora</option>
+	</select>
+</div>
+<div>
+	<div id="subtype_sound-select-{{ day if day else "global" }}" class="input-group" style="display: {{ 'none' if isPandora else '' }};">
+		<span class="input-group-addon" id="subtype-input-addon-{{ day if day else "global" }}">Sound File</span>
+		<select id="input-{{DailySetting.ALARM_SUBTYPE}}-{{ day if day else "global" }}" class="setting form-control" aria-describedby="type-input-addon-{{ day if day else "global" }}">
+			<option value="" {{ ("selected" if config.getDailySetting(day, DailySetting.ALARM_SUBTYPE) == "" else "") if day else ("selected" if config.getGlobalSetting(DailySetting.ALARM_SUBTYPE) == "" else "") }}>None</option>
+			{% for sound in sounds %}
+			<option value="{{ sound }}" {{ ("selected" if config.getDailySetting(day, DailySetting.ALARM_SUBTYPE) == sound else "") if day else ("selected" if config.getGlobalSetting(DailySetting.ALARM_SUBTYPE) == sound else "") }}>{{ sound }}</option>
+			{% end %}
+		</select>
+	</div>
+	<div id="subtype_pandora-select-{{ day if day else "global" }}" class="input-group" style="display: {{ '' if isPandora else 'none' }}">
+		<span class="input-group-addon" id="subtype-input-addon-{{ day if day else "global" }}">Pandora Station</span>
+		<input id="input-{{DailySetting.ALARM_SUBTYPE}}-{{ day if day else "global" }}"  type="text" class="setting form-control input-popup" placeholder="{{ (config.getDailySetting(day, DailySetting.ALARM_SUBTYPE) if day else config.getGlobalSetting(DailySetting.ALARM_SUBTYPE)) if isPandora else '' }}"
+					 aria-describedby="subtype-input-addon-{{ day if day else "global" }}"
+					 data-toggle="popover" data-trigger="focus" title="Note" data-container="body" data-placement="bottom"
+						 data-content="Make sure this station is setup in your specified Pandora account.">
+	</div>
+</div>

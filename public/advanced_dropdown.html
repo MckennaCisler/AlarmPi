@@ -1,0 +1,41 @@
+{% from AlarmConstants import * %}
+<a class="btn btn-link" role="button" data-toggle="collapse" href="#{{ day if day else "global" }}-advanced-container" aria-expanded="false" aria-controls="{{ day if day else "global" }}-advanced-container">
+	<span class="caret"></span> Advanced
+</a>
+<div id="{{ day if day else "global" }}-advanced-container" class="collapse">
+	{% if day %}
+		{% module TypeSelect(config, sounds, day) %}
+	{% end %}
+	{% if not day %}
+	<div class="input-group">
+		<span class="input-group-addon">Snooze Time</span>
+		<input id="input-{{GlobalSetting.SNOOZE_TIME}}-global" type="text" class="setting form-control" placeholder="{{ config.getGlobalSetting(GlobalSetting.SNOOZE_TIME) / 60 }}">
+		<span class="input-group-addon">min</span>
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Shutoff Timeout</span>
+		<input id="input-{{GlobalSetting.ACTIVATION_TIMEOUT}}-global" type="text" class="setting form-control" placeholder="{{ config.getGlobalSetting(GlobalSetting.ACTIVATION_TIMEOUT) / 60 }}">
+		<span class="input-group-addon">min</span>
+	</div>	
+	{% end %}
+	<div class="notice"><h5>Sleep-Cycle-Aligned Settings</h5></div>
+	<div class="input-group">
+		<span class="input-group-addon">Sleep Time</span>
+		<input id="input-{{DailySetting.DESIRED_SLEEP_TIME}}-{{ day if day else 'global'}}" type="text" class="setting form-control input-popup" placeholder="{{ (config.getDailySetting(day, DailySetting.DESIRED_SLEEP_TIME) if day else config.getGlobalSetting(DailySetting.DESIRED_SLEEP_TIME) ) / 3600.0 }}"
+						data-toggle="popover" data-trigger="focus" title="Note" data-container="body" data-placement="bottom"
+						data-content="This will override the normal functionality of the going-to-sleep button.">
+		<span class="input-group-addon">hours</span>
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">Max Oversleep</span>
+		<input id="input-{{DailySetting.MAX_OVERSLEEP}}-{{ day if day else "global" }}" type="range" step="5" min="0" max="90" class="setting form-control input-popup" placeholder="{{ (config.getDailySetting(day, DailySetting.MAX_OVERSLEEP) if day else config.getGlobalSetting(DailySetting.MAX_OVERSLEEP)) / 60 }}"
+					data-toggle="popover" data-trigger="hover" title="Note" data-container="body" data-placement="bottom"
+					data-content="The maximum time for a cycle-aligned alarm to go over your set alarm. (0 means always wake up earlier; 90 means always wake up later.)">
+		<span class="input-group-addon">min</span>
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon">To Sleep Time</span>
+		<input id="input-{{DailySetting.TIME_TO_SLEEP}}-{{ day if day else "global" }}" type="text" class="setting form-control" placeholder="{{ (config.getDailySetting(day, DailySetting.TIME_TO_SLEEP) if day else config.getGlobalSetting(DailySetting.TIME_TO_SLEEP)) / 60 }}">
+		<span class="input-group-addon">min</span>
+	</div>
+</div>

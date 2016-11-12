@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>AlarmPi Configuration</title>
+		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<br><br><br><br><br><br>
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="text-align: center;">
+			<h3 style="margin: 1em;">AlarmPi Configuration Login</h3>
+			<form action="/login" method="post">
+				<input class="form-control" type="password" placeholder="password" name="password">
+				<input class="btn btn-default" type="submit" style="margin: 1em;" value="Sign in">
+			</form>
+			<p id="message" style="color:red;">{{ message if message != None else "" }}</p>
+		</div>
+	</body>
+</html>

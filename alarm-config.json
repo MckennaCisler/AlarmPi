@@ -1,0 +1,91 @@
+{
+    "activation_timeout": 900,
+    "alarm_volume": 75,
+    "fri": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Argon",
+        "time-hr": 7,
+        "time-min": 45,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "mon": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Argon",
+        "time-hr": 7,
+        "time-min": 45,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "pandora_email": "mckennacisler@gmail.com",
+    "pandora_pass": "vikingswin1201PD",
+    "sat": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Mozart",
+        "time-hr": 11,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "pandora"
+    },
+    "snooze_time": 600,
+    "sun": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Mozart",
+        "time-hr": 12,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "pandora"
+    },
+    "thurs": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Argon",
+        "time-hr": 8,
+        "time-min": 45,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "tues": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Argon",
+        "time-hr": 8,
+        "time-min": 30,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "wed": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": true,
+        "subtype": "Argon",
+        "time-hr": 7,
+        "time-min": 45,
+        "time_to_sleep": 840,
+        "type": "sound"
+    }
+}

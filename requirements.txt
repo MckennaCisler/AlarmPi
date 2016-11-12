@@ -1,0 +1,6 @@
+python-tornado
+python-daemon
+pianobar
+aplay
+espeak
+sox

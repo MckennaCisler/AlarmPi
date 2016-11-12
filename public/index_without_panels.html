@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>index</title>
+		<link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+		<meta content="Mckenna Cisler" name="author">
+  </head>
+  <body>
+    <div id="header" class="page-header">
+      <h3>AlarmPi Configuration</h3>
+    </div>
+    <div class="container-fluid">
+      <div class="col-xs-12 col-md-8">
+				<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Daily Settings</h3>
+          </div>
+          <div id="days-container" class="panel-body container">
+						
+						
+            {% for day in days %}
+            <div class="col-xs-12 col-md-4">
+							<div id="div-{{ day }}">
+									<h5>
+										<!--<a role="button" data-toggle="collapse" href="#panel-collapse-{{ day }}" aria-expanded="false" aria-controls="panel-collapse-{{ day }}">-->
+											{{ getFullDayName(day) }}
+										<!--</a>-->
+									</h5>
+								<!--<div id="panel-collapse-{{ day }}" class="collapse in" aria-labelledby="panel-heading-{{ day }}">-->
+										<div class="input-group">
+												<span class="input-group-addon" id="type-input-addon-{{ day }}">Type</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "type") }}" aria-describedby="type-input-addon-{{ day }}">
+										</div>
+										<div class="input-group">
+												<span class="input-group-addon" id="{subtype-input-addon-{{ day }}">Subtype</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "subtype") }}" aria-describedby="subtype-input-addon-{{ day }}">
+										</div>
+										
+										<span class="caret"></span>
+										<a class="btn btn-link" role="button" data-toggle="collapse" href="#{{ day }}-advanced-container" aria-expanded="false" aria-controls="{{ day }}-advanced-container">Advanced</a>						
+										<div id="{{ day }}-advanced-container" class="collapse">
+											<div class="input-group">
+												<span class="input-group-addon">Volume</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "alarm_volume") }}">
+												<span class="input-group-addon">%</span>
+											</div>
+											<div class="input-group">
+												<span class="input-group-addon">Desired Sleep Time</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "desired_sleep_time") }}">
+												<span class="input-group-addon">hours</span>
+											</div>
+											<div class="input-group">
+												<span class="input-group-addon">Fall-asleep time</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "time_to_sleep") }}">
+												<span class="input-group-addon">minutes</span>
+											</div>
+											<div class="input-group">
+												<span class="input-group-addon" id="favorearly-input-addon-{{ day }}">Favor Early Wakeup</span>
+												<input type="text" class="form-control" placeholder="{{ config.getDailySetting(day, "favor_early_wakeup") == True }}" aria-describedby="favorearly-input-addon-{{ day }}">
+											</div>
+										</div>
+								</div>
+							</div>
+						</div>
+            {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Global Settings</h3>
+					</div>
+					<div class="panel-body">
+						
+					</div>
+				</div>
+      </div>
+    </div>
+    <div id="ft"></div>
+  </body>
+</html>

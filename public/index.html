@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+		{% from AlarmConstants import * %}
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>AlarmPi Configuration</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+		<meta content="Mckenna Cisler" name="author">
+		<meta name="viewport" content="width=device-width, initial-scale=.75">
+  </head>
+  <body>
+		<input class="hide" type="password">
+    <div id="header" class="page-header">
+      <h3>AlarmPi Configuration</h3>
+			<span>
+				<button id="config-save" class="btn btn-default" type="submit">Save Configuration</button>
+				<div id="save-status">Saved</div>
+			</span>
+    </div>
+    <div class="container-fluid">
+      <div class="col-xs-12 col-md-8">
+				<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Daily Settings</h3>
+          </div>
+          <div id="days-container" class="panel-body container">
+            {% for day in days %}
+            <div class="col-xs-12 col-md-4">
+							<div id="div-{{ day }}" class="panel panel-default">
+								<div class="panel-heading" id="panel-heading-{{ day }}">
+									<a class="day-title" role="button" data-toggle="collapse" href="#panel-collapse-{{ day }}" aria-expanded="false" aria-controls="panel-collapse-{{ day }}">
+										<h5 class="panel-title">{{ getFullDayName(day) }}</h5>
+										{% if config.getCycleAlignedTime(day) %} <span style="color:#a00;"><em>Cycle-Aligned @ {{ config.getCycleAlignedTime(day).strftime("%H:%M") }} </em></span> {% end %}
+									</a>
+									<input id="input-state-{{ day }}" class="setting day-checkbox checkbox-inline pull-right" type="checkbox" {{ "checked" if config.getState(day) else "" }}>
+								</div>
+								<div id="panel-collapse-{{ day }}" class="panel-collapse collapse" aria-labelledby="panel-heading-{{ day }}">
+									<div id="panel-body">
+										<div class="input-group">
+												<span class="input-group-addon" id="time-input-addon-{{ day }}"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+												<input id="input-time-{{ day }}" type="time" class="setting form-control" placeholder="{{ config.getTime(day).strftime('%H:%M') }}"
+															 aria-describedby="time-input-addon-{{ day }}">
+										</div>
+										{% module AdvancedDropdown(config, sounds, day) %}
+									</div>
+								</div>
+							</div>
+						</div>
+            {% end %}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Global Settings</h3>
+					</div>
+					<div class="panel-body">
+						<div class="notice">Note: changing some of these will override settings for particular days</div>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></span>
+							<input id="input-{{GlobalSetting.ALARM_VOLUME}}-global" type="range" step="5" min="0" max="100" class="setting form-control" value="{{ config.getGlobalSetting(GlobalSetting.ALARM_VOLUME) }}">
+							<span class="input-group-addon">%</span>
+						</div>
+						{% module TypeSelect(config, sounds) %}
+						<div class="input-group">
+							<span class="input-group-addon" id="pandora-email-input-addon">Pandora Email</span>
+							<input id="input-{{GlobalSetting.PANDORA_EMAIL}}-global" type="text" class="setting form-control" placeholder="{{ config.getGlobalSetting(GlobalSetting.PANDORA_EMAIL) }}"
+										 aria-describedby="pandora-email-input-addon">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="pandora-pass-input-addon">Pandora Password</span>
+							<input id="input-{{GlobalSetting.PANDORA_PASS}}-global" type="password" class="setting form-control input-popup" placeholder="{{ '*'*len(config.getGlobalSetting(GlobalSetting.PANDORA_PASS)) }}"
+										 aria-describedby="pandora-pass-input-addon"
+										 data-toggle="popover" data-trigger="focus" title="Warning" data-container="body" data-placement="bottom"
+											 data-content="Be aware, this password is stored in plaintext on this computer, and could be insecure.">
+						</div>
+						{% module AdvancedDropdown(config, sounds) %}
+					</div>
+				</div>
+      </div>
+    </div>
+    <div id="ft"></div>
+  </body>
+</html>

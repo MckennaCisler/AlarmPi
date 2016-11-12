@@ -1,0 +1,97 @@
+/* styles.css
+ *
+ * Stylesheet for ../index.html
+ * in AlarmPi public configuration page.
+ *
+ * Mckenna Cisler
+ * 6.26.2016
+ */
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+#hd {
+  background-color: #009900;
+  height: auto;
+  text-align: center;
+}
+
+#header {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left:  10px;
+  margin-top: 0px !important;
+}
+
+#header h3 {
+	display: inline-block;
+}
+
+#config-save {
+	margin-top: -4px;
+	display: inline-block;
+	float: right !important;
+}
+
+#save-status {
+	margin-top: -4px;
+	padding: 7px;
+	display: inline-block;
+	vertical-align: middle;
+	color: gray;
+	float: right;
+}
+
+.settings-header {
+  margin-top: 0;
+  padding: 5px;
+  color: white;
+}
+
+#days-container {
+	width: 100%;
+}
+
+.input-group {
+	margin: 8px;
+}
+
+.input-group-addon {
+	font-size: 1.1em;
+}
+
+input, select {
+	text-align: right;
+}
+
+.day-title {
+	display: inline-block;
+	width: 85%;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.day-title * {
+	display: inline-block;
+}
+
+.day-checkbox {
+	display: inline-block;
+	width: auto;
+}
+
+.notice {
+	font-size: .8em;
+	text-align: center;
+	color: gray;
+}
+
+
+
+
+
