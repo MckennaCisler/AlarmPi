@@ -1,5 +1,4 @@
-# AlarmPi
-## A raspberry pi-based alarm clock with a web interface
+# AlarmPi - A Raspberry Pi-based alarm clock with a configuration web interface
 
 ## Features
  - Settings for each day of the week
@@ -9,11 +8,11 @@
  - 3D printed case and button and speaker configuration
 
 ## How to install
-Simply clone the repository and run `install.sh`, which will install dependencies (in requirements.txt) and configure pianobar, the Pandora streaming system.
+Simply clone the repository and run `install.sh`, which will install dependencies (in `requirements.txt`) and configure pianobar, the Pandora streaming system.
 
-To have the daemon (`backend/alarmpi.py`) and webserver (`backend/server.py`) start up automatically, add a command to `/etc/rc.local`, for example:
-``` sudo -u pi python /home/pi/AlarmPi/backend/alarmpi.py && sudo -u pi python /home/pi/AlarmPi/backend/server.py
-```
+To start up the daemon (`backend/alarmpi.py`) and webserver (`backend/server.py`) automatically, add a command to `/etc/rc.local`, for example:
+
+ `sudo -u pi python /home/pi/AlarmPi/backend/alarmpi.py && sudo -u pi python /home/pi/AlarmPi/backend/server.py`
 
 I suggest you launch the web interface to get a better sense of the configuration and features of the project
 
