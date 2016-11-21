@@ -1,7 +1,7 @@
 # AlarmConfig.py
 #
 # Resposible for interfacing with the configuration file storing
-# alarm settings. Encapsulates file reads and writes as setting 
+# alarm settings. Encapsulates file reads and writes as setting
 # getting and setting.
 #
 # Mckenna Cisler
@@ -205,4 +205,6 @@ class AlarmConfig():
                 outputF.write(inputF.read())
 
 
-if __name__ == "__main__": test = AlarmConfig("test.json")
+if __name__ == "__main__":
+    test = AlarmConfig("../default.json")
+    test._updateConfig()
