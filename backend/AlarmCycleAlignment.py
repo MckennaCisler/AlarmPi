@@ -76,7 +76,7 @@ class AlarmCycleAlignment():
             self.config.setCycleAlignedTime(None, day=dayOfAlarm)
             # re-enable normal alarm... NOTE: THIS IS A BAD WAY TO DO IT; YOU SHOULD CHANGE alarmpi.py SO THAT DISABLING
             # IS NOT NECESSARY (WE JUST SKIP A NORMAL NON-SNOOZE ALARM IF A later CYCLE-ALIGNED IS DEFINED... OR CAN WE??????
-            self.config.setState(True)
+            self.config.setState(dayOfAlarm, True)
             speak("Disabled alarm")
         else:
             # get settings (but get them for the day before... this will ensure that even late at night
