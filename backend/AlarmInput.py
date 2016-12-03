@@ -28,11 +28,11 @@ class AlarmInput():
         GPIO.setup(self.ALERT_PIN, GPIO.OUT)
 
         # Setup initial handlers
-        GPIO.add_event_detect(self.SNOOZE_PIN, GPIO.FALLING, callback=self.alert, bouncetime=self.DEBOUNCE_DELAY)
-        GPIO.add_event_detect(self.DEACTIVATE_PIN, GPIO.FALLING, callback=self.alert, bouncetime=self.DEBOUNCE_DELAY)
+        GPIO.add_event_detect(self.SNOOZE_PIN, GPIO.FALLING, callback=self.feedback, bouncetime=self.DEBOUNCE_DELAY)
+        GPIO.add_event_detect(self.DEACTIVATE_PIN, GPIO.FALLING, callback=self.feedback, bouncetime=self.DEBOUNCE_DELAY)
 
         # notify of startup with beep
-        self.alert(0)
+        self.feedback(0)
 
     def __del__(self):
         GPIO.remove_event_detect(self.SNOOZE_PIN)
@@ -47,7 +47,7 @@ class AlarmInput():
         return self._pinActive(self.DEACTIVATE_PIN)
 
     def addSleepNowHandler(self, handler):
-        GPIO.add_event_detect(self.SLEEP_NOW_PIN, GPIO.FALLING, callback=self.alert, bouncetime=self.DEBOUNCE_DELAY)
+        GPIO.add_event_detect(self.SLEEP_NOW_PIN, GPIO.FALLING, callback=self.feedback, bouncetime=self.DEBOUNCE_DELAY)
         GPIO.add_event_callback(self.SLEEP_NOW_PIN, handler)
 
     def _pinActive(self, pin):
@@ -59,9 +59,13 @@ class AlarmInput():
         self.deactivatePressed()
 
     # this is run as a handler under RPi.GPIO, so needs an extra argument
-    def alert(self, pin):
+    def feedback(self, _):
+        self.alert(self.ALERT_CYCLE_FREQ)
+
+    def alert(self, duration):
+        """ Sends a high signal on the alert pin for the specified duration """
         GPIO.output(self.ALERT_PIN, True)
-        time.sleep(self.ALERT_CYCLE_FREQ / 1000.0)
+        time.sleep(duration / 1000.0)
         GPIO.output(self.ALERT_PIN, False)
 
 if __name__ == "__main__":

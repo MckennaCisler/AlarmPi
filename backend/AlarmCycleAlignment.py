@@ -16,10 +16,15 @@ class AlarmCycleAlignment():
     def __init__(self, userInput, config):
         # CONSTANTS
         self.BUTTON_DEBOUNCING_DELAY = 10000 # ms
+        self.ACTIVATE_CHIRP_DURATION = 10 # ms
+        self.ACTIVATE_CHIRP_SPACING = 100  # ms
+        self.DEACTIVATE_BEEP_DUR = 300  # ms
+        self.SPEAK_VS_BEEP = False
 
         # Variables
         self.config = config
         self.lastSetTime = datetime.datetime.min # never set before
+        self.userInput = userInput
 
         # bind alarm-setting handler to the Sleep Now button
         userInput.addSleepNowHandler(self.setAlignedAlarm)
@@ -77,7 +82,11 @@ class AlarmCycleAlignment():
             # re-enable normal alarm... NOTE: THIS IS A BAD WAY TO DO IT; YOU SHOULD CHANGE alarmpi.py SO THAT DISABLING
             # IS NOT NECESSARY (WE JUST SKIP A NORMAL NON-SNOOZE ALARM IF A later CYCLE-ALIGNED IS DEFINED... OR CAN WE??????
             self.config.setState(dayOfAlarm, True)
-            speak("Disabled alarm")
+
+            if self.SPEAK_VS_BEEP:
+                speak("Disabled alarm")
+            else:
+                self.userInput.alert(self.DEACTIVATE_BEEP_DUR)
         else:
             # get settings (but get them for the day before... this will ensure that even late at night
             # (early in the morning) the logical settings will be used)
@@ -98,10 +107,16 @@ class AlarmCycleAlignment():
                 self.config.setState(getDayFromNum(wakeTime.weekday()), False)
                 self.config.setCycleAlignedTime(wakeTime)
 
-                speak("Set at %s. %d hours, %d minutes" % (wakeTime.strftime("%H:%M %p"),
-                                                          (wakeTime - now).total_seconds() / 3600,
-                                                           ((wakeTime - now).total_seconds() / 60) % 60))
+                if self.SPEAK_VS_BEEP:
+                    speak("Set at %s. %d hours, %d minutes" % (wakeTime.strftime("%H:%M %p"),
+                                                            (wakeTime - now).total_seconds() / 3600,
+                                                            ((wakeTime - now).total_seconds() / 60) % 60))
+                else:
+                    # play a number of beeps corresponding to sleep time
+                    for i in range(0, int((wakeTime - now).total_seconds() / 3600)):
+                        self.userInput.alert(self.ACTIVATE_CHIRP_DURATION)
+                        time.sleep(self.ACTIVATE_CHIRP_SPACING / 1000.0)
             else:
-                speak("Error encountered")
+                speak("error")
 
         self.lastSetTime = now
