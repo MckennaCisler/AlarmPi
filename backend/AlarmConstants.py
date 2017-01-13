@@ -17,11 +17,13 @@ SOUNDS_DIRECTORY = ROOT_DIRECTORY + "/sounds/"
 PIANOBAR_FIFO = "/home/pi/.config/pianobar/ctl"
 PIANOBAR_STATE_FILE = "/home/pi/.config/pianobar/state"
 AUDIO_OUTPUT = "alsa_output.platform-bcm2835_AUD0.0.analog-stereo"
-SPEECH_VOICE = "en+m3"  # en+f4 # see http://espeak.sourceforge.net/languages.html
-SPEECH_SPEED = 150
 SPEECH_VOLUME = 80 # percent
-YAKITTOME_API_KEY = ""  # "utvWYeYhzFJtl1ausX690QY"
-DEBUG = False
+ESPEAK_SPEECH_VOICE = "en+m3"  # en+f4 # see http://espeak.sourceforge.net/languages.html
+ESPEAK_SPEECH_SPEED = 150
+YAKITTOME_SPEECH_VOICE = "Audrey" # see https://www.yakitome.com/documentation/tts_voices
+YAKITTOME_SPEECH_SPEED = 5
+YAKITTOME_API_KEY = "" #"utvWYeYhzFJtl1ausX690QY"
+DEBUG = True
 
 SOUND_FILE_EXT = ".wav"
 REPEAT_NUM = 50 # number of times to loop sounds
@@ -54,7 +56,7 @@ class DailySetting:
     DESIRED_SLEEP_TIME = "desired_sleep_time"  # seconds; desired time to sleep for using cycle-aligned alarm
     MAX_OVERSLEEP = "max_oversleep"     # seconds; max time for a cycle-aligned alarm to go over the desired wakeup
                                         # (O means always round down; 90 (maximum) means always round up)
-
+                                        
 class GlobalSetting:
     ALARM_VOLUME = "alarm_volume"  # value is in range(100)
     SNOOZE_TIME = "snooze_time"  # value is time in seconds to snooze for

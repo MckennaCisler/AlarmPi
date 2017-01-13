@@ -64,10 +64,13 @@ class ConfigHandler(server.BaseHandler):
             if (day in Days()):
                 # try to get all daily settings (do some specifically for more checking later
                 state = self.get_body_argument("state", default=False)
+                disableAligned = self.get_body_argument("disable_aligned", default=False)
                 timeStr = self.get_body_argument("time", default=False)
                 alarmType = self.get_body_argument(DailySetting.ALARM_TYPE, default=False)
                 subType = self.get_body_argument(DailySetting.ALARM_SUBTYPE, default=False)
-
+                
+                print disableAligned
+                
                 otherSettings = {}
                 for settingName in DailySettings():
                     # ignore alarm type and subtype because we got them
@@ -80,13 +83,17 @@ class ConfigHandler(server.BaseHandler):
                             otherSettings[settingName] = settingValue
 
                 # ensure it was a correctly-formed request
-                if (state or timeStr or subType or alarmType or len(otherSettings.keys()) > 0):
+                if (state or disableAligned or timeStr or subType or alarmType or len(otherSettings.keys()) > 0):
                     # cumulatively (without newlines) log all changes
                     logStr = "Set (on %s) " % day
 
                     if (state):
                         self.config.setState(day, state == "on")
                         logStr += "alarm state to '%s', " % ("on" if state == "on" else "off")
+                    
+                    if (disableAligned):
+                        self.config.setCycleAlignedTime(None, day)
+                        logStr += "cycle aligned alarm disabled, "
 
                     if (alarmType and alarmType in AlarmType.__dict__.values()):
                         self.config.setDailySetting(day, DailySetting.ALARM_TYPE, alarmType)

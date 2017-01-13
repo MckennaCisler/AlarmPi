@@ -55,7 +55,7 @@ class LoginHandler(BaseHandler):
     def post(self):
         # check password
         password = self.get_argument("password")
-        if (hashlib.sha256(password).hexdigest() == "2be80a326a4cd0218aba7592efe1388ae88963b89281d6edb03cb73b48c1dda3"):
+        if hashlib.sha256(password).hexdigest() == "0127ce4151c7694e87b9e50e71049ebbf39302de88dc6ed72be8e5ae294e9c33":
             self.set_secure_cookie("user", str(random.random()))
             self.redirect("/")
         else:

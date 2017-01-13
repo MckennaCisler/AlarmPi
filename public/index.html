@@ -16,6 +16,7 @@
 		<input class="hide" type="password">
     <div id="header" class="page-header">
       <h3>AlarmPi Configuration</h3>
+			<h4><span id="cur-time"></span></h4>
 			<span>
 				<button id="config-save" class="btn btn-default" type="submit">Save Configuration</button>
 				<div id="save-status">Saved</div>
@@ -34,7 +35,12 @@
 								<div class="panel-heading" id="panel-heading-{{ day }}">
 									<a class="day-title" role="button" data-toggle="collapse" href="#panel-collapse-{{ day }}" aria-expanded="false" aria-controls="panel-collapse-{{ day }}">
 										<h5 class="panel-title">{{ getFullDayName(day) }}</h5>
-										{% if config.getCycleAlignedTime(day) %} <span style="color:#a00;"><em>Cycle-Aligned @ {{ config.getCycleAlignedTime(day).strftime("%H:%M") }} </em></span> {% end %}
+										{% if config.getCycleAlignedTime(day) %}
+										<span class="cycle-aligned-notice">
+											<em>Cycle-Aligned @ {{ config.getCycleAlignedTime(day).strftime("%H:%M") }}  </em>
+											<button id="cycle-aligned-notice-button-{{ day }}" type="button" class="close cycle-aligned-notice-button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
+										</span>
+										{% end %}
 									</a>
 									<input id="input-state-{{ day }}" class="setting day-checkbox checkbox-inline pull-right" type="checkbox" {{ "checked" if config.getState(day) else "" }}>
 								</div>

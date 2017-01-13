@@ -22,6 +22,7 @@ from AlarmUtility import *
 from AlarmInput import *
 from AlarmActivator import *
 from AlarmCycleAlignment import *
+from AlarmReporting import *
 
 
 class AlarmPi:
@@ -33,6 +34,7 @@ class AlarmPi:
         # UTILIZED OBJECTS AND VARIABLES
         self.config = AlarmConfig(CONFIG_FILE)
         self.userInput = AlarmInput()
+        self.reporting = AlarmReporting(self.userInput)  # start various reporting capabilites
 
         self.snoozedAlarmTime = None
 
@@ -52,8 +54,9 @@ class AlarmPi:
             if self.config.getState(curDay) and self.currentlyAtTime(self.config.getTime(curDay)) or \
                     self.currentlyAtTime(self.config.getCycleAlignedTime(curDay)):
 
-                # clear all previous button pushes so they don't interfere
+                # clear all previous button pushes so they don't interfere, and disable any auxiliary handlers
                 self.userInput.clearHandlers()
+                self.reporting.disableHandlers()
 
                 # If we have any cycle-aligned alarm set, then re-enable the normal one (for next week).
                 # However, if the normal one will go off later, wait until that one activates
@@ -66,6 +69,8 @@ class AlarmPi:
                             self.currentlyAtTime(self.config.getTime(curDay)):
 
                             self.config.setCycleAlignedTime(None, day=curDay)
+
+                            self.reporting.enableHandlers()  # re-enable auxiliary handlers (briefly)
                             self.waitForNextCheck()
                             continue
                     # if an ACTIVE normal alarm time (or one overwritten by snooze) is after this cycle-alarm, ignore it but don't remove the cycle-aligned
@@ -125,6 +130,7 @@ class AlarmPi:
                 # deactivate once either a deactivate button is pressed
                 # or the alarm times out
                 alarm.deactivate()
+                self.reporting.enableHandlers() # re-enable auxiliary handlers
 
             self.waitForNextCheck()
 

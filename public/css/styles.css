@@ -29,8 +29,13 @@ em {
   margin-top: 0px !important;
 }
 
-#header h3 {
+#header h3, h4 {
 	display: inline-block;
+}
+
+#cur-time {
+	text-align: center;
+	margin-left: 5px;
 }
 
 #config-save {
@@ -91,6 +96,10 @@ input, select {
 	color: gray;
 }
 
+.cycle-aligned-notice {
+	color: #a00;
+	font-size: 18px;
+}
 
 
 

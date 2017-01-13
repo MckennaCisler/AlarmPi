@@ -46,6 +46,31 @@ $(document).ready(function () {
 		}
 	});
 	
+	// update time every second (we could be off by a half second, but that's okay)
+	setInterval(function() {
+		var curTime = new Date();
+		$("#cur-time").html(curTime.toLocaleTimeString('en-US') + " - " + curTime.toDateString());
+	}, 1000);
+	
+	// Apply a "delete" handler to all cycle-aligned
+	$(".cycle-aligned-notice-button").click(function () {
+		var timestamp = new Date();
+		
+		var settingDay = this.id.slice(this.id.lastIndexOf("-") + 1);
+		
+				console.log(this.id);
+				console.log(settingDay);
+		
+		var configChanges = {
+			day: settingDay,
+			disable_aligned: true
+		};
+		
+		addToSettingChangeQueue(configChanges, timestamp, this);
+		
+		// remove the cycle-aligned indicator
+		this.parentElement.remove();
+	});
 	
 	// Allow "Save Configuration" button to immediately save all changes
 	// Assign all inputs a generic callback for queuing setting changes
@@ -136,6 +161,13 @@ function addSettingChangeRequest(element) {
 		configChanges.day = settingDay;
 	}
 	
+	addToSettingChangeQueue(configChanges, timestamp, element);
+}
+
+/**
+ * Adds a setting change to the queue to be sent
+ */
+function addToSettingChangeQueue(configChanges, timestamp, element) {
 	requestSettings = {
 		url: CONFIG_HANDLER_URL,
 		data: configChanges,
@@ -163,7 +195,7 @@ function addSettingChangeRequest(element) {
 		timeoutID: timeout
 	});
 }
-
+	
 /**
  * Removes (and cancels the timeouts of) all queue elements for which the given property matches the given match.
  */

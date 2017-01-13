@@ -17,9 +17,9 @@ class AlarmCycleAlignment():
         # CONSTANTS
         self.BUTTON_DEBOUNCING_DELAY = 10000 # ms
         self.ACTIVATE_CHIRP_DURATION = 10 # ms
-        self.ACTIVATE_CHIRP_SPACING = 100  # ms
+        self.ACTIVATE_CHIRP_SPACING = 250  # ms
         self.DEACTIVATE_BEEP_DUR = 300  # ms
-        self.SPEAK_VS_BEEP = False
+        self.SPEAK_VS_BEEP = True
 
         # Variables
         self.config = config
@@ -60,7 +60,7 @@ class AlarmCycleAlignment():
         return sleepStart + datetime.timedelta(minutes=sleepTime)
 
     # this is run as a handler under RPi.GPIO, so needs an extra argument
-    def setAlignedAlarm(self, pin):
+    def setAlignedAlarm(self, _):
         now = datetime.datetime.today()
         today = getDayFromNum(now.weekday())
 
