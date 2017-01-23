@@ -15,6 +15,12 @@ em {
   font-style: italic;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 #hd {
   background-color: #009900;
   height: auto;
@@ -27,10 +33,15 @@ em {
   padding-bottom: 0px;
   padding-left:  10px;
   margin-top: 0px !important;
+	width: 100%;
 }
 
-#header h3, h4 {
-	display: inline-block;
+#header h3, #header h4 {
+	display: -webkit-inline-flex;
+}
+
+#header span {
+	float: right;
 }
 
 #cur-time {
@@ -39,18 +50,15 @@ em {
 }
 
 #config-save {
-	margin-top: -4px;
 	display: inline-block;
 	float: right !important;
 }
 
 #save-status {
-	margin-top: -4px;
 	padding: 7px;
 	display: inline-block;
 	vertical-align: middle;
 	color: gray;
-	float: right;
 }
 
 .settings-header {
