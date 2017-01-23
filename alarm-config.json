@@ -1,0 +1,91 @@
+{
+    "activation_timeout": 900,
+    "alarm_volume": 100,
+    "fri": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "mon": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 7,
+        "time-min": 30,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "pandora_email": "",
+    "pandora_pass": "",
+    "sat": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "snooze_time": 600,
+    "sun": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "thurs": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "tues": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    },
+    "wed": {
+        "aligned-time-hr": -1,
+        "aligned-time-min": -1,
+        "desired_sleep_time": 0,
+        "max_oversleep": 900,
+        "state": false,
+        "subtype": "Alarm1",
+        "time-hr": 0,
+        "time-min": 0,
+        "time_to_sleep": 840,
+        "type": "sound"
+    }
+}
