@@ -10,7 +10,7 @@
 import os
 
 # Global Constants
-ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__)) + "/.." # "/home/pi/sync/Projects/Coding/RPi/AlarmPi/"
+ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__)) + "/.." # "/home/pi/sync/Projects/Coding/project/RPi/AlarmPi/"
 CONFIG_FILE = ROOT_DIRECTORY + "/alarm-config.json"
 LOGFILE = "/tmp/alarmpi-log.log"
 SOUNDS_DIRECTORY = ROOT_DIRECTORY + "/sounds/"

@@ -193,6 +193,10 @@ class AlarmConfig():
         except IOError:
             log("Configuration file not found, generating a new one.")
             self._generateNewConfig()
+        except ValueError:
+            log("Configuration file not readable, generating a new one.")
+            self._generateNewConfig()
+
 
     def _updateConfig(self):
         with open(self.filename, "w") as outputF:

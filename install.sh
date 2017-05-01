@@ -32,4 +32,10 @@ if [ $? -ne 0 ]; then
  exit 1; 
 fi
 
+# add startup file
+mkdir -p ~/.config/upstart/
+printf 'description "AlarmPi alarm clock and configuration server" \nauthor "Mckenna Cisler" \nstart on runlevel [2456] \nstop on shutdown \nscript \nexec python /home/pi/sync/Projects/Coding/RPi/AlarmPi/backend/alarmpi.py \npython /home/pi/sync/Projects/Coding/RPi/AlarmPi/backend/server.py \nend script\n' > ~/.config/upstart/alarmpi.conf
+
+echo "*****Reboot to complete changes*****"
+
 #xdg-open http://everyday-tech.com/how-to-install-pianobar-on-the-raspberry-pi/

@@ -117,7 +117,7 @@ class ConfigHandler(server.BaseHandler):
                                                      today.month,
                                                      today.day,
                                                      hour=int(timeStr[:firstColon]),
-                                                     minute=int(timeStr[firstColon + 1: len(timeStr) if firstColon == lastColon else lastColon]))
+                                                     minute=int(timeStr[firstColon + 1: (len(timeStr) if firstColon == lastColon else lastColon)]))
 
                             self.config.setTime(time, day)
                             logStr += "alarm time to %s, " % timeStr

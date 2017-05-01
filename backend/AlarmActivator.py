@@ -35,8 +35,8 @@ class AlarmActivator():
             self._activatePandora(self.subType)
 
     def _activateSound(self, sound):
-        self._soundProcess = sub.Popen(["play", SOUNDS_DIRECTORY + sound + SOUND_FILE_EXT, "repeat", str(REPEAT_NUM)],
-                                       stdout=(None if DEBUG else sub.PIPE))
+        self._soundProcess = sub.Popen(["play", SOUNDS_DIRECTORY + sound + SOUND_FILE_EXT, "repeat", str(REPEAT_NUM)])
+        # stdout=(None if DEBUG else sub.PIPE)
 
     # TODO: Check if successful
 
@@ -45,8 +45,9 @@ class AlarmActivator():
         if (os.path.isfile(PIANOBAR_STATE_FILE)):
             os.remove(PIANOBAR_STATE_FILE)
 
-        # start pianobar (ignore stdout by piping)
-        self._soundProcess = sub.Popen(["pianobar"], stdout=(None if DEBUG else sub.PIPE))
+        # start pianobar
+        self._soundProcess = sub.Popen(["pianobar"])
+        # stdout=(None if DEBUG else sub.PIPE)
 
         # open FIFO to send data to pianobar - see http://linux.die.net/man/1/pianobar under "Remote Control"
         with open(PIANOBAR_FIFO, "w") as fifoInput:
