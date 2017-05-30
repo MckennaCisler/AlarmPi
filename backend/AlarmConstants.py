@@ -23,7 +23,7 @@ ESPEAK_SPEECH_SPEED = 150
 YAKITTOME_SPEECH_VOICE = "Audrey" # see https://www.yakitome.com/documentation/tts_voices
 YAKITTOME_SPEECH_SPEED = 5
 YAKITTOME_API_KEY = "" #"utvWYeYhzFJtl1ausX690QY"
-DEBUG = False
+DEBUG = True
 
 SOUND_FILE_EXT = ".wav"
 REPEAT_NUM = 50 # number of times to loop sounds

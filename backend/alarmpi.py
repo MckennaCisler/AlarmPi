@@ -156,6 +156,6 @@ class AlarmPi:
 
 
 if __name__ == "__main__":
-    #logFile = open(LOGFILE, "a")
-    #with daemon.DaemonContext(working_directory=ROOT_DIRECTORY + "/backend", stdout=logFile, stderr=logFile):
-    AlarmPi()
+    logFile = open(LOGFILE, "a")
+    with daemon.DaemonContext(working_directory=ROOT_DIRECTORY + "/backend", stdout=logFile, stderr=logFile):
+    	AlarmPi()
