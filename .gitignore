@@ -51,4 +51,5 @@ alarm-config.json~
 /exterior
 TODOS
 alarm-config.json
-.pyc
+*.pyc
+/rpi-config
