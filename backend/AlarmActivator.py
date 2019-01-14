@@ -5,7 +5,7 @@
 #
 # Mckenna Cisler
 # mckennacisler@gmail.com
-# 7.4.2016
+# 1.13.2019
 
 import subprocess as sub
 import os
@@ -23,7 +23,8 @@ class AlarmActivator():
         self._soundProcess = None
 
         # ensure set on headphone jack
-        sub.call(["amixer", "cset", "numid=3", "1"])
+        if AUTO_SET_AUDIO_DEVICE:
+            sub.call(["amixer", "cset", "numid=3", "1"])
 
     def activate(self):
         if (self._soundProcess != None):

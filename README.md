@@ -10,11 +10,15 @@
 ## How to install
 Simply clone the repository and run `install.sh`, which will install dependencies (in `requirements.txt`) and configure pianobar, the Pandora streaming system.
 
-To start up the daemon (`backend/alarmpi.py`) and webserver (`backend/server.py`) automatically, add a command to `/etc/rc.local`, for example:
+To start up the daemon (`backend/alarmpi.py`) and webserver (`backend/server.py`) automatically, add a command to run one of the included start scripts to `/etc/rc.local`:
 
- `sudo -u pi python /home/pi/AlarmPi/backend/alarmpi.py && sudo -u pi python /home/pi/AlarmPi/backend/server.py`
+`bash /home/pi/AlarmPi/start.sh` or `python /home/pi/AlarmPi/start.py`
 
-I suggest you launch the web interface to get a better sense of the configuration and features of the project
+The scripts will automatically run the application as the pi user to keep logfiles from being written as root.
+
+To change the password for the web interface, generate the SHA-256 hash of your desired password using a tool such as [this one](https://www.xorbin.com/tools/sha256-hash-calculator), and then set `LOGIN_PASSWORD_HASH` in `server.py` to that hash.
+
+I suggest you launch the web interface to get a better sense of the configuration and features of the project.
 
 ## Physical setup
 The AlarmPi requires several physical add-ons to the Pi:

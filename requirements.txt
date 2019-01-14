@@ -6,3 +6,4 @@ aplay
 espeak
 sox
 libttspico-utils
+libsox-fmt-all

@@ -1,11 +1,11 @@
 # AlarmConstants.py
 #
-# A place for storing global constants and "enum" 
+# A place for storing global constants and "enum"
 # classes of constants.
 #
 # Mckenna Cisler
 # mckennacisler@gmail.com
-# 7.4.2016
+# 1.13.2019
 
 import os
 
@@ -16,7 +16,7 @@ LOGFILE = "/tmp/alarmpi-log.log"
 SOUNDS_DIRECTORY = ROOT_DIRECTORY + "/sounds/"
 PIANOBAR_FIFO = "/home/pi/.config/pianobar/ctl"
 PIANOBAR_STATE_FILE = "/home/pi/.config/pianobar/state"
-AUDIO_OUTPUT = "alsa_output.platform-bcm2835_AUD0.0.analog-stereo"
+AUTO_SET_AUDIO_DEVICE = True
 SPEECH_VOLUME = 80 # percent
 ESPEAK_SPEECH_VOICE = "en+m3"  # en+f4 # see http://espeak.sourceforge.net/languages.html
 ESPEAK_SPEECH_SPEED = 150
@@ -56,7 +56,7 @@ class DailySetting:
     DESIRED_SLEEP_TIME = "desired_sleep_time"  # seconds; desired time to sleep for using cycle-aligned alarm
     MAX_OVERSLEEP = "max_oversleep"     # seconds; max time for a cycle-aligned alarm to go over the desired wakeup
                                         # (O means always round down; 90 (maximum) means always round up)
-                                        
+
 class GlobalSetting:
     ALARM_VOLUME = "alarm_volume"  # value is in range(100)
     SNOOZE_TIME = "snooze_time"  # value is time in seconds to snooze for

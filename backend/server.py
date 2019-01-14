@@ -7,7 +7,7 @@
 #
 # Mckenna Cisler
 # mckennacisler@gmail.com
-# 7.4.2016
+# 1.13.2019
 
 import daemon
 import os
@@ -24,6 +24,7 @@ import UIModules
 # CONSTANTS
 LISTEN_PORT = 8888
 WEB_ROOT = ROOT_DIRECTORY + "/public"
+LOGIN_PASSWORD_HASH = "0127ce4151c7694e87b9e50e71049ebbf39302de88dc6ed72be8e5ae294e9c33"
 
 # Globals (Sorry, they're needed for the MainHandler)
 config = AlarmConfig(CONFIG_FILE)
@@ -55,7 +56,7 @@ class LoginHandler(BaseHandler):
     def post(self):
         # check password
         password = self.get_argument("password")
-        if hashlib.sha256(password).hexdigest() == "0127ce4151c7694e87b9e50e71049ebbf39302de88dc6ed72be8e5ae294e9c33":
+        if hashlib.sha256(password).hexdigest() == LOGIN_PASSWORD_HASH:
             self.set_secure_cookie("user", str(random.random()))
             self.redirect("/")
         else:
